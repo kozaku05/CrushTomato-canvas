@@ -23,7 +23,7 @@ function draw() {
         positions.forEach(pos => {
             pos.t++;
             if (!pos.isCrush) {
-                pos.y = pos.h+g*pos.t*pos.t;
+                pos.y = pos.h+g*pos.t*pos.t/2;
                 if (pos.y + 40 >= canvas.height) {
                     pos.isCrush = true;
                 }
