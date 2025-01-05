@@ -1,4 +1,5 @@
 /** @type {HTMLCanvasElement} */
+const g=0.2;
 function draw() {
     const canvas = document.getElementById("canvas");
     if (!canvas) {
@@ -15,13 +16,14 @@ function draw() {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        positions.push({ x, y, speed: 4, isCrush: false });
+        positions.push({ x, y, t: 0, isCrush: false, h: y});
     });
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         positions.forEach(pos => {
+            pos.t++;
             if (!pos.isCrush) {
-                pos.y += pos.speed;
+                pos.y = pos.h+g*pos.t*pos.t/2;
                 if (pos.y + 40 >= canvas.height) {
                     pos.isCrush = true;
                 }
